@@ -8,7 +8,6 @@ import Payment from "./components/pages/payment";
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<CheckOut />} />

@@ -5,16 +5,25 @@ import "./header.css";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../context/StateProvider";
 import { auth } from "../../db/Firebase";
+import { useState, useEffect } from "react";
 
-function Header() {
+function Header({ product, setSearch }) {
+  const [filterText, setfilterText] = useState("");
+  console.log(product);
   const [{ basket, user }, dispatch] = useStateValue();
   const handleAuthentication = () => {
     if (auth) {
       auth.signOut();
     }
   };
-  console.log(auth);
-  console.log(user);
+  useEffect(() => {
+    setSearch(
+      product.filter((item) =>
+        item.title.toLowerCase().includes(filterText.toLowerCase())
+      )
+    );
+  }, [filterText]);
+
   return (
     <div className="header">
       <Link to="/" style={{ textDecoration: "none" }}>
@@ -24,7 +33,12 @@ function Header() {
         </h2>
       </Link>
       <div className="header-search">
-        <input className="header-searchInput" type="text" />
+        <input
+          className="header-searchInput"
+          type="text"
+          value={filterText}
+          onChange={(e) => setfilterText(e.target.value)}
+        />
 
         <ManageSearchIcon className="header-searchIcon" />
       </div>
