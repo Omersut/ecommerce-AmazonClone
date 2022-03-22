@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../db/Firebase";
 import "./login.css";
+import CookieIcon from "@mui/icons-material/Cookie";
 
 function Login() {
   const history = useNavigate();
@@ -36,11 +37,20 @@ function Login() {
 
   return (
     <div className="login">
-      <Link to="/">
-        <img
-          className="login-logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
-        />
+      <Link
+        style={{
+          textDecoration: "none",
+
+          margin: "10px",
+        }}
+        to="/"
+      >
+        <h1 style={{ margin: "15px", alignItems: "center", color: "black" }}>
+          <i>
+            SH
+            <CookieIcon fontSize="medium" style={{ color: "black" }} />P
+          </i>
+        </h1>
       </Link>
 
       <div className="login-container">
